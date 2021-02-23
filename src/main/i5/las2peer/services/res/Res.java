@@ -119,7 +119,24 @@ public class Res extends RESTService {
      
     // service method invocations
 
-     
+     Connection connection;
+
+    try {
+        connection = dbm.getConnection();
+
+        String songTitle = (String) payload_JSON.get("title");
+        String songArtist = (String) payload_JSON.get("artist");
+    
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO songs (title, artist) VALUES(?,?);");
+        statement.setString(1, songTitle);
+        statement.setString(2, songArtist);
+        statement.executeUpdate();
+        statement.close();
+
+        return Response.ok("Success").build();
+    } catch (SQLException e) {
+        return Response.serverError().build();
+    }
 
 
 
