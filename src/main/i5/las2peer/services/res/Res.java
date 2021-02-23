@@ -125,11 +125,9 @@ public class Res extends RESTService {
         connection = dbm.getConnection();
 
         String songTitle = (String) payload_JSON.get("title");
-        String songArtist = (String) payload_JSON.get("artist");
     
-        PreparedStatement statement = connection.prepareStatement("INSERT INTO songs (title, artist) VALUES(?,?);");
+        PreparedStatement statement = connection.prepareStatement("INSERT INTO songs (title) VALUES(?);");
         statement.setString(1, songTitle);
-        statement.setString(2, songArtist);
         statement.executeUpdate();
         statement.close();
 
