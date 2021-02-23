@@ -181,20 +181,6 @@ Connection connection;
         return Response.serverError().build();
     }
      
-
-
-
-
-    // res
-    boolean res_condition = true;
-    if(res_condition) {
-      JSONObject result = new JSONObject();
-
-      
-
-      return Response.status(HttpURLConnection.HTTP_OK).entity(result.toJSONString()).build();
-    }
-    return null;
   }
 
 
