@@ -161,7 +161,25 @@ public class Res extends RESTService {
 
      
     // service method invocations
+Connection connection;
 
+    try {
+        connection = dbm.getConnection();
+    
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM songs;");
+        ResultSet result = statement.executeQuery();
+
+        JSONArray a = new JSONArray();
+        while(result.next()) {
+            JSONObject songJson = new JSONObject();
+            songJson.put("title", result.getString("title"));
+            a.add(songJson);
+        }
+        statement.close();
+        return Response.ok(a.toJSONString()).build();
+    } catch (SQLException e) {
+        return Response.serverError().build();
+    }
      
 
 
