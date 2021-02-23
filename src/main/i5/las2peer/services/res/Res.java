@@ -135,20 +135,6 @@ public class Res extends RESTService {
     } catch (SQLException e) {
         return Response.serverError().build();
     }
-
-
-
-
-    // res
-    boolean res_condition = true;
-    if(res_condition) {
-      JSONObject resul = new JSONObject();
-
-      
-
-      return Response.status(HttpURLConnection.HTTP_OK).entity(resul.toJSONString()).build();
-    }
-    return null;
   }
 
   /**
